@@ -15,7 +15,7 @@
  shuffle(cards);
  for (let i = 0 , i < cards.length, i++) {
    deck.innerHTML = "";
-   card = cards[i];
+   var card = cards[i];
    card.classList.remove('open','show','matched');
    deck.appendChild(card);
  }
