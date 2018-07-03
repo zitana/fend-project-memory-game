@@ -6,7 +6,9 @@ let cards = document.getElementsByClassName("card");
 cards = [...cards];
 
 const deck = document.querySelector('.deck');
-const movesCounter = document.querySelector('.moves')
+const movesCounter = document.querySelector('.moves');
+const starsCounter = document.querySelector('.stars');
+const star = '<li><i class="fa fa-star"></i></li>';
 
 let openCards = [];
 let matchedCardsCounter;
@@ -45,6 +47,7 @@ function prepareDeck() {
           console.log("Not a match :(");
         }
         addMove();
+        rating();
       } else {
         if (openCards.length === 2) {
           openCards[0].classList.remove('open', 'show', 'disabled');
@@ -91,6 +94,16 @@ function startGame() {
 function addMove() {
   moves++;
   movesCounter.innerHTML = moves;
+}
+
+function rating() {
+  if (15 < moves && moves < 21) {
+      starsCounter.innerHTML =star+star;
+  } else if (moves > 22) {
+    starsCounter.innerHTML =star;
+  } else {
+    starsCounter.innerHTML =star+star+star;
+  }
 }
 
 document.querySelector('.restart').addEventListener('click' , function() {
