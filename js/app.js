@@ -6,9 +6,11 @@ let cards = document.getElementsByClassName("card");
 cards = [...cards];
 
 const deck = document.querySelector('.deck');
+const movesCounter = document.querySelector('.moves')
 
 let openCards = [];
 let matchedCardsCounter;
+let moves;
 
 /*
 * Display the cards on the page
@@ -42,6 +44,7 @@ function prepareDeck() {
         } else {
           console.log("Not a match :(");
         }
+        addMove();
       } else {
         if (openCards.length === 2) {
           openCards[0].classList.remove('open', 'show', 'disabled');
@@ -82,9 +85,15 @@ function startGame() {
   prepareDeck();
   openCards = [];
   matchedCardsCounter = 0;
+  moves = 0;
 }
 
-document.getElementsByClassName('restart')[0].addEventListener('click' , function() {
+function addMove() {
+  moves++;
+  movesCounter.innerHTML = moves;
+}
+
+document.querySelector('.restart').addEventListener('click' , function() {
   startGame();
 })
 
