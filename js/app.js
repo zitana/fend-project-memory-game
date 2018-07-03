@@ -22,14 +22,14 @@ startGame();
 function prepareDeck() {
   deck.innerHTML = "";
   for (let i = 0; i < cards.length; i++) {
-    cards[i].classList.remove('open','show','match');
+    cards[i].classList.remove('open','show','match','disabled');
     deck.appendChild(cards[i]);
     cards[i].addEventListener('click', function() {
       if (openCards.length === 1) {
         const currentCard = this;
         const previousCard = openCards[0];
 
-        this.classList.add('open' , 'show');
+        this.classList.add('open' , 'show', 'disabled');
         openCards.push(this);
 
         if (currentCard.innerHTML === previousCard.innerHTML) {
@@ -44,8 +44,8 @@ function prepareDeck() {
         }
       } else {
         if (openCards.length === 2) {
-          openCards[0].classList.remove('open' , 'show');
-          openCards[1].classList.remove('open' , 'show');
+          openCards[0].classList.remove('open', 'show', 'disabled');
+          openCards[1].classList.remove('open', 'show', 'disabled');
           openCards = [];
         }
         this.classList.add('open' , 'show');
