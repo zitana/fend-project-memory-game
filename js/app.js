@@ -8,6 +8,7 @@ cards = [...cards];
 const deck = document.querySelector('.deck');
 
 let openCards = [];
+let matchedCardsCounter;
 
 /*
 * Display the cards on the page
@@ -16,8 +17,7 @@ let openCards = [];
 *   - add each card's HTML to the page
 */
 
-shuffle(cards);
-prepareDeck();
+startGame();
 
 function prepareDeck() {
   deck.innerHTML = "";
@@ -37,6 +37,8 @@ function prepareDeck() {
           currentCard.classList.add('match');
           previousCard.classList.add('match');
           openCards = [];
+          matchedCardsCounter+=2;
+          isOver();
         } else {
           console.log("Not a match :(");
         }
@@ -69,6 +71,22 @@ function shuffle(array) {
   return array;
 }
 
+function isOver() {
+  if (matchedCardsCounter === cards.length) {
+    alert("GAME OVER!")
+  }
+}
+
+function startGame() {
+  shuffle(cards);
+  prepareDeck();
+  openCards = [];
+  matchedCardsCounter = 0;
+}
+
+document.getElementsByClassName('restart')[0].addEventListener('click' , function() {
+  startGame();
+})
 
 /*
 * set up the event listener for a card. If a card is clicked:
